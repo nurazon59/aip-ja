@@ -46,16 +46,16 @@ Japanese.
 ## Requirement Keywords
 
 AIPs define RFC 2119 keywords in AIP-8. In source AIPs these keywords are
-lower-case and bold. Preserve the English keyword and add the Japanese meaning
-outside the bold span:
+lower-case and bold. Translate the keyword into Japanese in bold and add the
+English original in parentheses:
 
 | Source           | Translation                          |
 | ---------------- | ------------------------------------ |
-| `**must**`       | `**must**（しなければならない）`     |
-| `**must not**`   | `**must not**（してはならない）`     |
-| `**should**`     | `**should**（するべきである）`       |
-| `**should not**` | `**should not**（するべきではない）` |
-| `**may**`        | `**may**（してもよい）`              |
+| `**must**`       | `**しなければならない**（must）`     |
+| `**must not**`   | `**してはならない**（must not）`     |
+| `**should**`     | `**すべきである**（should）`       |
+| `**should not**` | `**すべきではない**（should not）` |
+| `**may**`        | `**してもよい**（may）`              |
 
 Do not translate normative `may` as `かもしれない`.
 
