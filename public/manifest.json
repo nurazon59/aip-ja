@@ -1,0 +1,15 @@
+{
+  "name": "AIP JA",
+  "short_name": "AIP JA",
+  "start_url": "/aip-ja/",
+  "scope": "/aip-ja/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/aip-ja/favicon.svg",
+      "sizes": "512x512"
+    }
+  ]
+}
