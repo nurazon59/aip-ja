@@ -1,0 +1,32 @@
+<div class="flex flex-wrap justify-between">
+
+<div>
+{{ if and .GitInfo .Site.Params.BookLastChangeLink }}
+  {{- $date := partial "docs/date" (dict "Date" .Lastmod "Format" .Site.Params.BookDateFormat) -}}
+  <a class="flex align-center" href="{{ partial "docs/links/commit" . }}" title='{{ partial "docs/text/i18n" "Last modified by" }} {{ .GitInfo.AuthorName }} | {{ $date }}' target="_blank" rel="noopener">
+    <img src="{{ partial "docs/icon" "calendar" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Calendar" }}" />
+    <span>{{ $date }}</span>
+  </a>
+{{ end }}
+</div>
+
+<div>
+{{ if and .File .Site.Params.BookEditLink }}
+  <a class="flex align-center" href="{{ partial "docs/links/edit" . }}" target="_blank" rel="noopener edit">
+    <img src="{{ partial "docs/icon" "edit" }}" class="book-icon" alt="{{ partial "docs/text/i18n" "Edit" }}" />
+    <span>{{ partial "docs/text/i18n" "Edit this page" }}</span>
+  </a>
+{{ end }}
+</div>
+
+</div>
+
+<div class="book-license">
+  {{ if eq .Site.Language.Lang "ja" }}
+    <p>このサイトの一部は、Google が作成および共有した著作物を元にした改変です。コンテンツは <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>、コード サンプルは <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache License 2.0</a> の条件に従います。詳細は <a href="{{ "pages/general/licensing/" | relLangURL }}">ライセンス</a> を参照してください。</p>
+  {{ else }}
+    <p>Portions of this site are modifications based on work created and shared by Google. Content is used under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>, and code samples are used under the <a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener">Apache License 2.0</a>. See <a href="{{ "pages/general/licensing/" | relLangURL }}">licensing</a> for details.</p>
+  {{ end }}
+</div>
+
+{{ partial "docs/prev-next" . }}

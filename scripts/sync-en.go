@@ -11,6 +11,7 @@ import (
 
 type syncTask struct {
 	upstreamDir string
+	overrideDir string
 	outputDir   string
 }
 
@@ -32,7 +33,15 @@ func (s *syncTask) run() error {
 		}
 	}
 
+	overrideCount, err := s.applyOverrides()
+	if err != nil {
+		return err
+	}
+
 	fmt.Printf("synced %d files from %s to %s\n", len(files), s.upstreamDir, s.outputDir)
+	if overrideCount > 0 {
+		fmt.Printf("applied %d overrides from %s\n", overrideCount, s.overrideDir)
+	}
 	return nil
 }
 
@@ -99,9 +108,51 @@ func (s *syncTask) copyFile(src, dst string) error {
 	return out.Close()
 }
 
+func (s *syncTask) applyOverrides() (int, error) {
+	if s.overrideDir == "" {
+		return 0, nil
+	}
+
+	if _, err := os.Stat(s.overrideDir); err != nil {
+		if os.IsNotExist(err) {
+			return 0, nil
+		}
+		return 0, err
+	}
+
+	count := 0
+	err := filepath.WalkDir(s.overrideDir, func(path string, entry fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		if entry.IsDir() {
+			return nil
+		}
+
+		rel, err := filepath.Rel(s.overrideDir, path)
+		if err != nil {
+			return err
+		}
+
+		dst := filepath.Join(s.outputDir, rel)
+		if err := s.copyFile(path, dst); err != nil {
+			return err
+		}
+
+		count++
+		return nil
+	})
+	if err != nil {
+		return 0, err
+	}
+
+	return count, nil
+}
+
 func main() {
 	task := &syncTask{
 		upstreamDir: "upstream/google.aip.dev",
+		overrideDir: "content-overrides/en",
 		outputDir:   "content/en",
 	}
 

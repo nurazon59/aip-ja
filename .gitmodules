@@ -1,3 +1,6 @@
+[submodule "upstream/google.aip.dev"]
+	path = upstream/google.aip.dev
+	url = https://github.com/aip-dev/google.aip.dev
 [submodule "themes/hugo-book"]
 	path = themes/hugo-book
 	url = https://github.com/alex-shpak/hugo-book
