@@ -2,7 +2,7 @@ baseURL = 'https://nurazon59.github.io/aip-ja/'
 defaultContentLanguage = 'ja'
 defaultContentLanguageInSubdir = true
 title = 'AIP JA'
-theme = 'PaperMod'
+theme = 'hugo-book'
 
 [languages]
 [languages.en]
@@ -18,7 +18,8 @@ locale = 'ja-JP'
 weight = 2
 
 [params]
-homeInfoParams = { Title = 'AIP JA', Content = 'Google AIP (API Improvement Proposals) の日本語訳' }
+BookSection = 'aip'
+BookComments = false
 
 [markup]
 [markup.goldmark]
