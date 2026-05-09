@@ -1,0 +1,41 @@
+.book-menu {
+  flex: 0 0 20rem !important;
+}
+
+.book-menu .book-menu-content {
+  width: 20rem !important;
+}
+
+.book-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+  padding: 0.5em 0;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gray-500);
+  cursor: pointer;
+}
+
+.book-section-header:first-child {
+  margin-top: 0;
+}
+
+.book-section-header .book-icon {
+  height: 1em;
+  width: 1em;
+  transition: transform 0.1s ease-in-out;
+}
+
+.book-menu nav > ul {
+  padding-inline-start: 0;
+}
+
+.book-menu nav > ul > li > ul {
+  padding-inline-start: 1em;
+}

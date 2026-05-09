@@ -20,6 +20,7 @@ weight = 2
 [params]
 BookSection = 'aip'
 BookComments = false
+custom_css = ['/css/custom.css']
 
 [markup]
 [markup.goldmark]
