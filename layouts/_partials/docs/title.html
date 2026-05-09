@@ -1,0 +1,26 @@
+<!-- 
+  Partial to generate page name from Title, first h1 heading, or File name.
+  Accepts Page as context
+-->
+{{ $title := "" }}
+
+{{ if .LinkTitle }}
+{{ $title = .LinkTitle }}
+{{ else if .Title }}
+{{ $title = .Title }}
+{{ else if and .IsPage .RawContent }}
+{{ $h1Match := findRE `(?m)^#\s+([^\r\n]+)` .RawContent 1 }}
+{{ with $h1Match }}
+{{ $title = index . 0 | strings.TrimPrefix "#" | strings.TrimSpace }}
+{{ end }}
+{{ end }}
+
+{{ if eq $title "" }}
+{{ if and .IsSection .File }}
+{{ $title = path.Base .File.Dir | humanize | title }}
+{{ else if and .IsPage .File }}
+{{ $title = .File.BaseFileName | humanize | title }}
+{{ end }}
+{{ end }}
+
+{{ return $title }}
