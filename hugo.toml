@@ -2,16 +2,25 @@ baseURL = 'https://nurazon59.github.io/aip-ja/'
 defaultContentLanguage = 'ja'
 defaultContentLanguageInSubdir = true
 title = 'AIP JA'
+theme = 'PaperMod'
 
 [languages]
-  [languages.en]
-  contentDir = 'content/en'
-  languageName = 'English'
-  locale = 'en-US'
-  weight = 1
+[languages.en]
+contentDir = 'content/en'
+label = 'English'
+locale = 'en-US'
+weight = 1
 
-  [languages.ja]
-  contentDir = 'content/ja'
-  languageName = '日本語'
-  locale = 'ja-JP'
-  weight = 2
+[languages.ja]
+contentDir = 'content/ja'
+label = '日本語'
+locale = 'ja-JP'
+weight = 2
+
+[params]
+homeInfoParams = { Title = 'AIP JA', Content = 'Google AIP (API Improvement Proposals) の日本語訳' }
+
+[markup]
+[markup.goldmark]
+[markup.goldmark.renderer]
+unsafe = true
