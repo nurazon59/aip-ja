@@ -16,18 +16,24 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       id-token: write
-      contents: read
-      pull-requests: read
-      issues: read
+      contents: write
+      pull-requests: write
+      issues: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
         with:
+          fetch-depth: 0
           persist-credentials: false
+
+      - name: Setup mise
+        uses: jdx/mise-action@1648a7812b9aeae629881980618f079932869151 # v4.0.1
 
       - name: Run opencode
         uses: anomalyco/opencode/github@8ba2a9171597262df9d19516c82a5e14f18f5c63 # v1.14.41
         env:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         with:
-          model: opencode-go/deepseek-v4-pro
+          # 日本語翻訳タスク向け選定: Qwen3系がSwallow日本語ベンチでオープン首位 (0.823) のため第一選択。
+          # フォールバック候補: opencode-go/kimi-k2.6 (総合性能でArtificial Analysis #4)。
+          model: opencode-go/qwen3.6-plus
