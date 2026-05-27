@@ -42,6 +42,18 @@ Japanese.
 - Keep AIP IDs in prose as `AIP-123` without zero-padding unless the source
   intentionally uses another form in code or paths.
 - Do not invent explanatory notes or add missing context.
+- Do not translate comments inside fenced code blocks. Leave code-block
+  contents (including `//`, `#`, and proto comments) in the original
+  language unless the entire surrounding section explicitly demonstrates
+  translated code comments.
+- Translate callout labels with a half-width colon to match the upstream
+  form `**Note:**` / `**Important:**`:
+  - `**Note:**` -> `**注:**`
+  - `**Important:**` -> `**重要:**`
+  - Do not use the full-width colon `：` for these labels.
+- When using a reference-style AIP link in prose such as `[AIP-132][aip-132]`,
+  ensure a matching `[aip-132]: ...` reference definition exists in the file.
+  Carry over the original AIP's reference definitions when they are missing.
 
 ## Requirement Keywords
 
@@ -62,6 +74,24 @@ Do not translate normative `may` as `かもしれない`.
 When requirement keywords appear inside code examples, comments, or quoted text,
 preserve the local context. Do not mechanically rewrite code identifiers or enum
 values.
+
+### Verb attachment
+
+When a requirement keyword follows a verb in running prose, fuse it into the
+verb's conjugated form. Do not concatenate the dictionary form of the verb
+with the bolded keyword — the result is ungrammatical and obscures the
+normative requirement.
+
+| Bad                                    | Good                                |
+| -------------------------------------- | ----------------------------------- |
+| `定義する **しなければならない**`      | `定義**しなければならない**`        |
+| `含める **しなければならない**`        | `含め**なければならない**`          |
+| `異なる**してもよい**`                 | `異なっ**てもよい**`                |
+| `持つ**してはならない**`               | `持っ**てはならない**`              |
+| `設定する**すべきである**`             | `設定**すべきである**`              |
+
+The bilingual `（must）` / `（may）` / `（should）` parenthesis stays at the
+end of the resulting bold phrase, e.g. `**しなければならない**（must）`.
 
 ## Terminology
 
@@ -92,6 +122,7 @@ new Japanese translation.
 | client                 | クライアント              |
 | declarative client     | 宣言的クライアント        |
 | user                   | ユーザー                  |
+| customer               | 顧客                      |
 | resource               | リソース                  |
 | method                 | メソッド                  |
 | field                  | フィールド                |
@@ -136,8 +167,6 @@ new Japanese translation.
 - Prefer `blob store` over forced translations such as `ブロブストア` unless
   local context already standardizes a Japanese form.
 - Preserve product names, library names, domains, and protocol names.
-- Code blocks are normally left unchanged except for prose comments when the
-  surrounding document clearly translates comments.
 
 ## Review Checklist
 
