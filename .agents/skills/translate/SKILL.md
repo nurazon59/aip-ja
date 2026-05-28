@@ -167,6 +167,38 @@ new Japanese translation.
 - Prefer `blob store` over forced translations such as `ブロブストア` unless
   local context already standardizes a Japanese form.
 - Preserve product names, library names, domains, and protocol names.
+- Prefer natural Japanese constructions (often passive / state-of-being)
+  over literal active translations of English. Examples:
+  - "they are not well-supported" → `十分にサポートされていない`（受動）
+    NOT `適切にサポートしていない`（能動・主体不明瞭）
+  - "X is widely used" → `X が広く使われている` NOT `X を広く使用している`
+- When a direct word-for-word order yields ungrammatical or unclear Japanese,
+  restructure to match the *meaning* of the source, not the surface order.
+  Modifier placement, especially for clauses introduced by `, separated by ...`
+  / `, followed by ...`, often needs to move to follow Japanese head-final order.
+
+## Punctuation and Quotes
+
+- Preserve ASCII straight quotes from the source exactly: `"..."`, `'...'`.
+  Do NOT convert them to Japanese corner brackets `「...」` or curly quotes
+  `“...”`.
+- Preserve source backticks for inline code/identifiers.
+- Use `、` and `。` for prose punctuation; do not introduce `，` or `．`.
+- Half-width parentheses `（ ）` are used for the bilingual requirement-keyword
+  suffix (e.g. `（must）`). Otherwise, follow the source's parenthesis style.
+
+## Bold Scope
+
+- Do not introduce bold that is not present in the source. If the source has
+  `which should be singular`（no bold around `should`）, the Japanese must
+  leave `すべきである` unbolded and omit the `（should）` suffix — but
+  **preserve the modal meaning**: keep `すべきである` / `しなければならない` /
+  `してもよい` etc. Do NOT drop the modal to a plain `である` / `する`.
+- Bold spans only the requirement-keyword phrase, not surrounding particles or
+  助詞. Example: `複数形と**すべきであり**（should）` — NOT
+  `複数形**とすべきであり**`（不要な`と`の取り込み）.
+- Only requirement keywords (`must` / `must not` / `should` / `should not` /
+  `may`) get the bilingual `（...）` suffix, and only when bolded in the source.
 
 ## Review Checklist
 
@@ -177,4 +209,9 @@ new Japanese translation.
 - AIP links and paths remain relative and valid.
 - Code identifiers, enum values, field names, method names, and annotations are
   not translated.
+- **Code-block comments are in the original language** (English) — translated
+  comments inside fenced code blocks are a hard violation.
+- ASCII quotes/parens preserved (no `「」` / `“”` substitution).
+- Bold spans match the source — no bold introduced where the source has none,
+  and bold does not engulf adjacent particles.
 - Terminology is consistent with the table above.
