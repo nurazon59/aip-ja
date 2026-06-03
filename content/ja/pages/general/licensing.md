@@ -1,37 +1,23 @@
----
-title: "ライセンス"
----
+# コンテンツライセンス
 
-# コンテンツ ライセンス
+このサイトは、google.aip.dev のコンテンツに基づく非公式の日本語翻訳サイトである。
 
-このサイトは google.aip.dev のコンテンツを元にした非公式の日本語翻訳
-サイトです。
+特に明記されていない限り：
 
-特に記載がない限り、ライセンスは次の通りです。
+- google.aip.dev のオリジナルAIPコンテンツは、[Creative Commons Attribution 4.0 International License][cc-by-4.0] の下でライセンスされている。
+- AIPコンテンツの日本語翻訳およびその他の翻案は、[Creative Commons Attribution 4.0 International License][cc-by-4.0] の下でライセンスされている。
+- google.aip.dev から派生したコードサンプルは、[Apache License 2.0][apache-2.0] の下でライセンスされている。
+- サイト実装コードはMIT Licenseの下でライセンスされている。
 
-- google.aip.dev の元 AIP コンテンツは
-  [Creative Commons Attribution 4.0 International License][cc-by-4.0] の下で
-  提供されています。
-- AIP コンテンツの日本語翻訳およびその他の改変部分は
-  [Creative Commons Attribution 4.0 International License][cc-by-4.0] の下で
-  提供します。
-- google.aip.dev に由来するコード サンプルは
-  [Apache License 2.0][apache-2.0] の下で提供されています。
-- サイト実装コードは MIT License の下で提供します。
+このサイトの一部は、Googleが作成および共有した作品を元にした改変を含み、[Creative Commons Attribution 4.0 International License][cc-by-4.0] に記載された条件に従って使用されている。
 
-このサイトの一部は、Google が作成および共有した著作物を元にした改変であり、
-[Creative Commons Attribution 4.0 International License][cc-by-4.0] の条件に
-従って利用しています。
-
-元ソース:
+オリジナルソース：
 [aip-dev/google.aip.dev][source]
 
-元ライセンス表示:
+オリジナルライセンス表示：
 [google.aip.dev LICENSE.md][source-license]
 
-このプロジェクトは Google または元 AIP プロジェクトのメンテナーによる
-提携、支援、承認を受けたものではありません。Google の商標およびその他の
-ブランド機能は Creative Commons ライセンスに含まれません。
+このプロジェクトは、GoogleまたはオリジナルのAIPプロジェクトメンテナーと提携、スポンサー、または承認されてはいない。Googleの商標およびその他のブランドフィーチャーは、Creative Commonsライセンスには含まれない。
 
 [apache-2.0]: https://www.apache.org/licenses/LICENSE-2.0
 [cc-by-4.0]: https://creativecommons.org/licenses/by/4.0/
