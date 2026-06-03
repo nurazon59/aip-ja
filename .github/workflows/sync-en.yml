@@ -1,0 +1,58 @@
+name: sync-en
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  id-token: write
+
+jobs:
+  sync-en:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          submodules: true
+          persist-credentials: false
+
+      - name: Update submodule
+        run: git submodule update --remote upstream/google.aip.dev
+
+      - name: Setup mise
+        uses: jdx/mise-action@c37c93293d6b742fc901e1406b8f764f6fb19dac # v2.4.4
+
+      - name: Run sync-en
+        run: go run scripts/sync-en.go
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        id: cpr
+        with:
+          title: "chore: sync english content from upstream"
+          body: "Auto-generated PR to sync English content from upstream repository."
+          branch: sync-en
+          delete-branch: true
+          commit-message: "chore: sync english content from upstream"
+          add-paths: |
+            content/en
+            upstream/google.aip.dev
+
+      - name: Run opencode for translation
+        if: steps.cpr.outputs.pull-request-number
+        uses: anomalyco/opencode/github@8ba2a9171597262df9d19516c82a5e14f18f5c63 # v1.14.41
+        env:
+          OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          model: opencode-go/deepseek-v4-pro
+          use_github_token: true
+          prompt: |
+            このPRの差分(content/en/)を確認し、対応する日本語訳をcontent/ja/に追加・更新してください。
+            既存の日本語訳がある場合はupstreamの変更に追従し、新規ファイルの場合は翻訳を作成してください。
+            翻訳の際は.agents/skills/translateがあればそれを使用してください。
+            翻訳が完了したら同じPRブランチにコミットしてプッシュしてください。
