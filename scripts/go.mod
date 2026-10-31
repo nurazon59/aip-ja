@@ -2,4 +2,4 @@ module github.com/nurazon59/aip-ja/scripts
 
 go 1.26
 
-require github.com/yuin/goldmark v1.8.2
+require github.com/yuin/goldmark v1.8.7
